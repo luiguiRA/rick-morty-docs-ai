@@ -1,5 +1,4 @@
 export const runtime = "nodejs";
-process.env;
 
 const MODEL = "models/gemini-2.0-flash";
 
@@ -62,8 +61,12 @@ export async function POST(req: Request): Promise<Response> {
       "No se pudo generar resumen.";
 
     return jsonResponse({ text: responseText });
-  } catch (error: any) {
-    console.error("Error interno:", error);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error("Error interno:", error.message);
+    } else {
+      console.error("Error interno desconocido:", error);
+    }
     return jsonResponse({ error: "Error interno del servidor." }, 500);
   }
 }

@@ -10,7 +10,6 @@ type Character = {
   species: string;
   gender: string;
   image: string;
-  [key: string]: any;
 };
 
 async function getCharacter(id: string): Promise<Character | null> {
