@@ -3,17 +3,22 @@ process.env;
 
 const MODEL = "models/gemini-2.0-flash";
 
+interface Character {
+  id: number;
+  name: string;
+}
+
 function buildGeminiUrl(): string {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) throw new Error("la clave GEMINI no esta definida");
   return `https://generativelanguage.googleapis.com/v1beta/${MODEL}:generateContent?key=${apiKey}`;
 }
 
-function createPrompt(character: any): string {
-  return `Basado en los siguientes datos JSON de los personaje de la serie Rick and Morty, compórtate como el mismo personaje que se esta solicitando y crea un resumen acerca del mismo personaje. 
-  El resumen de 3 líneas debe capturar la esencia del personaje, sus aventuras y su impacto en el universo de Rick and Morty. Aquí están los datos del personaje:\n\n${JSON.stringify(
-    character
-  )}`;
+function createPrompt(character: Character): string {
+  return `Comportate como un fan de la serie "Rick and Morty", quiero que obtengas la escencia del siguiente personaje.
+   y describiéndolo de forma creativa un parrafo de 3 lines. Aquí están los datos del personaje:\n\n${JSON.stringify(
+     character
+   )}`;
 }
 
 function jsonResponse(data: object, status: number = 200): Response {

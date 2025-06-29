@@ -28,37 +28,46 @@ export default async function CharacterPage(props: {
   if (!character) notFound();
 
   return (
-    <main className="p-6 max-w-3xl mx-auto">
+    <main className="p-6 max-w-3xl mx-auto font-mono">
       <Link
         href="/"
-        className="inline-block mb-4 text-blue-600 hover:underline"
+        className="inline-block mb-6 text-lime-400 hover:text-lime-300 transition-colors duration-200"
       >
         ← Volver al catálogo
       </Link>
 
-      <h1 className="text-3xl font-bold mb-4 text-center">{character.name}</h1>
+      <h1 className="text-4xl font-extrabold text-center text-lime-400 mb-6 drop-shadow-md">
+        {character.name}
+      </h1>
 
       <Image
         src={character.image}
         alt={character.name}
-        width={200}
-        height={200}
-        className="rounded-lg mb-6 mx-auto border-4 border-green-400 shadow-xl"
+        width={240}
+        height={240}
+        className="mx-auto rounded-full border-4 border-lime-400 shadow-[0_0_25px_#84cc16] hover:scale-105 transition-transform duration-300"
       />
 
-      <ul className="text-lg space-y-2 mb-6">
+      <ul className="bg-black text-white mt-8 p-6 rounded-lg shadow-inner border border-lime-400 space-y-3 text-lg">
         <li>
-          <strong>Estado:</strong> {character.status}
+          <span className="text-lime-300 font-semibold">🧬 Estado:</span>{" "}
+          {character.status}
         </li>
         <li>
-          <strong>Especie:</strong> {character.species}
+          <span className="text-lime-300 font-semibold">👽 Especie:</span>{" "}
+          {character.species}
         </li>
         <li>
-          <strong>Género:</strong> {character.gender}
+          <span className="text-lime-300 font-semibold">⚧️ Género:</span>{" "}
+          {character.gender}
         </li>
       </ul>
 
-      <div className="mt-8">
+      <pre className="bg-gray-900 text-green-300 mt-6 p-4 rounded-lg text-sm overflow-x-auto shadow-inner border border-green-700">
+        {JSON.stringify(character, null, 2)}
+      </pre>
+
+      <div className="mt-10 text-center">
         <GenerateSummaryButton character={character} />
       </div>
     </main>
