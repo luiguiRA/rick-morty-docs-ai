@@ -9,7 +9,6 @@ type Character = {
   species: string;
   gender: string;
   image: string;
-  [key: string]: any;
 };
 
 type Props = {
@@ -39,10 +38,12 @@ export default function GenerateSummaryButton({ character }: Props) {
       }
       const data = await res.json();
       setSummary(data.text);
-    } catch (err: any) {
-      setError(err.message || "Error desconocido.");
-    } finally {
-      setLoading(false);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Error desconocido.");
+      }
     }
   }
 
