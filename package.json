@@ -6,12 +6,13 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "clean": "rm -rf .next && echo ' Limpiado .next'"
   },
   "dependencies": {
     "next": "15.2.0",
-    "react": "19.0.0",
-    "react-dom": "19.0.0"
+    "react": "18.2.0",
+  "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
