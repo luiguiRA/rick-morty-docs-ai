@@ -11,11 +11,13 @@ type Character = {
   image: string;
 };
 
-type Props = {
+type GenerateSummaryButtonProps = {
   character: Character;
 };
 
-export default function GenerateSummaryButton({ character }: Props) {
+export default function GenerateSummaryButton({
+  character,
+}: GenerateSummaryButtonProps) {
   const [loading, setLoading] = useState(false);
   const [summary, setSummary] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -44,6 +46,8 @@ export default function GenerateSummaryButton({ character }: Props) {
       } else {
         setError("Error desconocido.");
       }
+    } finally {
+      setLoading(false);
     }
   }
 
