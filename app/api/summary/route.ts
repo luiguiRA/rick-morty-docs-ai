@@ -14,10 +14,10 @@ function buildGeminiUrl(): string {
 }
 
 function createPrompt(character: Character): string {
-  return `Comportate como un fan de la serie "Rick and Morty", quiero que obtengas la escencia del siguiente personaje.
-   y describiéndolo de forma creativa un parrafo de 3 lines. Aquí están los datos del personaje:\n\n${JSON.stringify(
-     character
-   )}`;
+  return `Comportate como un fan experto de Rick and Morty. A partir de los siguientes datos JSON, escribe un resumen 
+  creativo en tono entusiasta de máximo 3 líneas sobre este personaje:\n\n${JSON.stringify(
+    character
+  )}`;
 }
 
 function jsonResponse(data: object, status: number = 200): Response {
